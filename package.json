@@ -1,0 +1,31 @@
+{
+  "name": "rendr-proxy-adapter",
+  "version": "0.1.0",
+  "description": "Rendr RestAdapter for proxied APIs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "lab -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruiquelhas/rendr-proxy-adapter.git"
+  },
+  "keywords": [
+    "rendr",
+    "adapter",
+    "proxy",
+    "headers",
+    "session",
+    "cookies"
+  ],
+  "author": "Rui Quelhas <rfpquelhas@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ruiquelhas/rendr-proxy-adapter/issues"
+  },
+  "homepage": "https://github.com/ruiquelhas/rendr-proxy-adapter",
+  "dependencies": {
+    "lab": "^4.3.0",
+    "rendr": "^0.5.0"
+  }
+}
