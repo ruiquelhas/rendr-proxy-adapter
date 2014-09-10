@@ -3,28 +3,66 @@ var lab = exports.lab = Lab.script();
 
 var ProxyAdapter = require('../');
 
-var rendr = require('rendr');
-
-var internals = {};
-internals.createServer = function () {
-  return rendr.createServer({
-    dataAdapter: new ProxyAdapter({
-      default: {
-        protocol: 'http',
-        host: '127.0.0.1:1337'
-      }
-    })
-  });
-};
-
 lab.experiment('Rendr proxy adapter', function () {
-  lab.test('proxies valid cookie data if the request cookies are parsed', function (done) {
-    // var server = internals.createServer();
+  //jshint sub: true
+
+  lab.test('keeps request cookies parsed using the deprecated parser', function (done) {
+    var adapter = new ProxyAdapter();
+
+    var api = { method: null }; // avoid the method being reset by rendr
+    var req = { cookies: { name: 'value' }};
+
+    var output = adapter.apiDefaults(api, req);
+
+    Lab.expect(output.headers).to.have.property('Cookie');
+    Lab.expect(output.headers['Cookie']).to.equal('name=value');
+
     done();
   });
 
-  lab.test('proxies valid cookie data if the request cookies are not parsed', function (done) {
-    // var server = internals.createServer();
+  lab.test('keeps the request cookies parsed using the supported parser', function (done) {
+    var adapter = new ProxyAdapter({ cookies: ['name'] });
+
+    var api = { method: null }; // avoid the method being reset by rendr
+
+    var req = {
+      cookies: {
+        get: function () {
+          return 'value';
+        },
+        set: function () {}
+      }
+    };
+
+    var output = adapter.apiDefaults(api, req);
+
+    Lab.expect(output.headers).to.have.property('Cookie');
+    Lab.expect(output.headers['Cookie']).to.equal('name=value');
+
+    done();
+  });
+
+  lab.test('keeps the raw request cookies if the parser is not known', function (done) {
+    var adapter = new ProxyAdapter({});
+    var api = { method: null }; // avoid the method being reset by rendr
+    var req = { cookies: 'name=value' };
+
+    var output = adapter.apiDefaults(api, req);
+
+    Lab.expect(output.headers).to.have.property('Cookie');
+    Lab.expect(output.headers['Cookie']).to.equal('name=value');
+
+    done();
+  });
+
+  lab.test('does nothing when there are no cookies', function (done) {
+    var adapter = new ProxyAdapter({});
+    var api = { method: null }; // avoid the method being reset by rendr
+
+    var output = adapter.apiDefaults(api);
+
+    Lab.expect(output.headers).to.not.have.property('Cookie');
+
     done();
   });
 });

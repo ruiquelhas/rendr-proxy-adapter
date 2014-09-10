@@ -25,12 +25,10 @@
   },
   "homepage": "https://github.com/ruiquelhas/rendr-proxy-adapter",
   "dependencies": {
-    "lab": "^4.3.0",
     "rendr": "^0.5.0",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
-    "request": "^2.42.0",
-    "sinon": "^1.10.3"
+    "lab": "^4.3.0"
   }
 }
