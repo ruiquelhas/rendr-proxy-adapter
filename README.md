@@ -68,6 +68,7 @@ rendr.createServer({
     dataAdapter: adapter
     // whatevs
 });
+```
 
 ## Contributions
 
