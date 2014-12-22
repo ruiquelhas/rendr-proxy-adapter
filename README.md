@@ -1,4 +1,4 @@
-# rendr-proxy-adapter
+# rendr-proxy-adapter ![Travis CI Badge](https://travis-ci.org/ruiquelhas/rendr-proxy-adapter.svg)
 
 Rendr RestAdapter for proxied APIs.
 
