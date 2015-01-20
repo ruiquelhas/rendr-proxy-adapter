@@ -1,6 +1,6 @@
 {
   "name": "rendr-proxy-adapter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rendr RestAdapter for proxied APIs.",
   "main": "index.js",
   "scripts": {
@@ -25,15 +25,15 @@
   },
   "homepage": "https://github.com/ruiquelhas/rendr-proxy-adapter",
   "peerDependencies": {
-    "rendr": "^0.5.1",
+    "rendr": "^1.0.0",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
     "code": "^1.2.1",
-    "lab": "^5.1.0"
+    "lab": "^5.2.0"
   },
   "dependencies": {
-    "rendr": "^0.5.1",
+    "rendr": "rendrjs/rendr",
     "underscore": "^1.7.0"
   }
 }
