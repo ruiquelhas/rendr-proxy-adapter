@@ -4,7 +4,7 @@
   "description": "Rendr RestAdapter for proxied APIs.",
   "main": "index.js",
   "scripts": {
-    "test": "lab -c"
+    "test": "lab -c -I Intl"
   },
   "repository": {
     "type": "git",
