@@ -1,6 +1,6 @@
 {
   "name": "rendr-proxy-adapter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Rendr RestAdapter for proxied APIs.",
   "main": "index.js",
   "scripts": {
