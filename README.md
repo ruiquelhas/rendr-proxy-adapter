@@ -15,22 +15,9 @@ A custom version of the traditional `RestAdapter` that inherits all its function
 A cookie store. So, any security (encryption, decryption, yada yada) or management layer should be provided via the middleware you are using or the endpoint you plan to hit.
 
 ## How to use
+[http://rendrjs.github.io/app/#config](http://rendrjs.github.io/app/#config)
 
 ### For cookies
-
-If you are using [cookie-parser](//github.com/expressjs/cookie-parser), this ensures all cookies are proxied.
-
-```javascript
-var rendr = require('rendr');
-var ProxyAdapter = require('rendr-proxy-adapter')
-
-var adapter = new ProxyAdapter();
-
-rendr.createServer({
-    dataAdapter: adapter
-    // whatevs
-});
-```
 
 You can select which cookies to proxy by providing a list of cookie names. If you're a hipster, and you're using [connect-cookies](//github.com/expressjs/cookies) you are **required** to do that.
 
@@ -62,6 +49,32 @@ var ProxyAdapter = require('rendr-proxy-adapter')
 var adapter = new ProxyAdapter({
     // forward the "Host" header
     headers: ['host']
+});
+
+rendr.createServer({
+    dataAdapter: adapter
+    // whatevs
+});
+```
+
+### Configure headers per API
+
+```javascript
+var rendr = require('rendr');
+var ProxyAdapter = require('rendr-proxy-adapter')
+
+var adapter = new ProxyAdapter({
+    default: {
+    	host: 'example.com,
+    	headers: ['host']
+    },
+    github: {
+    	host: 'api.github.com,
+    	cookies: ['name']
+    },
+    travis: {
+    	host: 'api.travis-ci.com
+    }
 });
 
 rendr.createServer({
