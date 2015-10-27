@@ -48,7 +48,10 @@ var ProxyAdapter = require('rendr-proxy-adapter')
 
 var adapter = new ProxyAdapter({
     // forward the "Host" header
-    headers: ['host']
+    headers: [
+    	{name: 'host', as: 'x-original-host'},
+    	'Accept'
+    ]
 });
 
 rendr.createServer({
