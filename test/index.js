@@ -169,7 +169,7 @@ lab.experiment('Rendr proxy adapter', function () {
     lab.test('keeps the selected request headers', function (done) {
 
         var adapter = new ProxyAdapter({
-            headers: ['host']
+            headers: [{name: 'host', as: 'x-original-host'}]
         });
 
         var api = {
@@ -184,9 +184,10 @@ lab.experiment('Rendr proxy adapter', function () {
 
         var output = adapter.apiDefaults(api, req);
 
-        Code.expect(output.headers).to.include('host');
+        Code.expect(output.headers).to.include('x-original-host');
+        Code.expect(output.headers).to.not.include('host');
         Code.expect(output.headers).to.not.include('hostname');
-        Code.expect(output.headers['host']).to.equal('localhost:1337');
+        Code.expect(output.headers['x-original-host']).to.equal('localhost:1337');
 
         return done();
     });
